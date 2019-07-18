@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Data, Client
-#from .emailsend import send_email
+from .emailsend import send_email
 
 
 
@@ -73,11 +73,21 @@ def datareceive(request):
         if(device_serial and p1vb_meter and p2vb_meter and p3vb_meter and p1cb_meter and p2cb_meter and p3cb_meter and
            p1va_meter and p2va_meter and p3va_meter and p1ca_meter and p2ca_meter and p3ca_meter):
             
-            #ca_meter_float = float(ca_meter)
-            #cin_house_float  = float(cin_house)
-            #va_meter_float = float(va_meter)
+            p1vb_meter_float = float(p1vb_meter)
+            p2vb_meter_float = float(p2vb_meter)
+            p3vb_meter_float = float(p3vb_meter)
             
-            #send_email(ca_meter_float,  cin_house_float, va_meter_float)
+            p1cb_meter_float = float(p1cb_meter)
+            p2cb_meter_float = float(p2cb_meter)
+            p3cb_meter_float = float(p3cb_meter)
+            
+            p1ca_meter_float = float(p1ca_meter)
+            p2ca_meter_float = float(p2ca_meter)
+            p3ca_meter_float = float(p3ca_meter)
+            
+            
+            send_email(p1vb_meter_float,  p2vb_meter_float, p3vb_meter_float, p1cb_meter_float, p2cb_meter_float,
+                       p3cb_meter_float, p1ca_meter_float, p2ca_meter_float, p3ca_meter_float)
                              
                 
             client_object = Client.objects.get(device_serial = device_serial)    
